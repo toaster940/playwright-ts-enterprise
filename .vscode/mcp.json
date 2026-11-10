@@ -1,0 +1,22 @@
+{
+  "servers": {
+    "quality-lab": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["${workspaceFolder}/scripts/launch.cjs", "mcp"],
+      "cwd": "${workspaceFolder}"
+    },
+    "playwright-browser": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["${workspaceFolder}/scripts/launch.cjs", "browser"],
+      "cwd": "${workspaceFolder}"
+    },
+    "playwright-test": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["${workspaceFolder}/scripts/launch.cjs", "authoring"],
+      "cwd": "${workspaceFolder}"
+    }
+  }
+}

@@ -1,0 +1,196 @@
+.component-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+  gap: 24px;
+}
+select {
+  font: inherit;
+  padding: 10px;
+  max-width: 100%;
+  width: 100%;
+  border: 1px solid #66758c;
+  border-radius: 6px;
+  background: white;
+  color: #17233a;
+}
+select:disabled {
+  background: #e6eaf1;
+  color: #475569;
+}
+output {
+  display: block;
+  margin: 12px 0;
+}
+.inline {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-weight: normal;
+}
+fieldset {
+  min-width: 0;
+  border: 1px solid #66758c;
+  border-radius: 6px;
+}
+.error {
+  color: #a21818;
+  font-weight: bold;
+}
+button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+[hidden] {
+  display: none !important;
+}
+.autocomplete {
+  position: relative;
+}
+[role='listbox'] {
+  padding: 0;
+  margin: 4px 0;
+  border: 1px solid #66758c;
+  border-radius: 6px;
+  max-height: 210px;
+  overflow: auto;
+  background: white;
+  color: #17233a;
+}
+[role='option'] {
+  display: block;
+  padding: 10px;
+  cursor: pointer;
+}
+[role='option'][aria-selected='true'] {
+  background: #dce6ff;
+}
+[role='tablist'] {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+[role='tab'][aria-selected='true'] {
+  background: #17233a;
+  outline: 2px solid #204ecf;
+  outline-offset: 2px;
+}
+[role='tabpanel'] {
+  padding: 16px 0;
+}
+details {
+  border: 1px solid #66758c;
+  padding: 12px;
+  margin: 14px 0;
+  border-radius: 6px;
+}
+summary {
+  cursor: pointer;
+  font-weight: bold;
+}
+.menu-wrapper {
+  display: inline-block;
+  position: relative;
+  margin: 14px 10px 14px 0;
+}
+[role='menu'] {
+  position: absolute;
+  z-index: 2;
+  min-width: 190px;
+  padding: 8px;
+  border: 1px solid #66758c;
+  background: white;
+  border-radius: 6px;
+}
+[role='menuitem'] {
+  display: block;
+  width: 100%;
+  margin: 4px 0;
+}
+#toast {
+  padding: 12px;
+  background: #d8f2e5;
+  color: #12482d;
+  margin: 12px 0;
+  border-radius: 6px;
+}
+#toast button {
+  margin-left: 10px;
+}
+[role='tooltip'] {
+  padding: 10px;
+  margin-top: 8px;
+  background: #17233a;
+  color: white;
+  border-radius: 6px;
+}
+.table-scroll {
+  overflow-x: auto;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 14px 0;
+}
+td,
+th {
+  text-align: left;
+  padding: 10px;
+  border-bottom: 1px solid #d1d9e6;
+}
+#calendar-dialog {
+  width: 560px;
+  max-width: calc(100% - 24px);
+}
+.calendar-controls {
+  display: flex;
+  align-items: end;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.calendar-controls label {
+  flex: 1;
+  min-width: 100px;
+}
+#calendar-dialog td,
+#calendar-dialog th {
+  padding: 2px;
+  text-align: center;
+}
+#calendar-dialog td button {
+  width: 100%;
+  padding: 9px 2px;
+  border-radius: 4px;
+}
+#calendar-dialog [aria-selected='true'] button {
+  background: #17233a;
+  outline: 2px solid #204ecf;
+}
+#calendar-help {
+  font-size: 14px;
+}
+#registration-form > div {
+  width: 100%;
+  max-width: 460px;
+}
+.lab-dark {
+  background: #111b2c;
+  color: #eff4ff;
+}
+.lab-dark section {
+  background: #17233a;
+}
+input:focus-visible,
+select:focus-visible,
+summary:focus-visible {
+  outline: 3px solid #c05400;
+  outline-offset: 3px;
+}
+@media (max-width: 500px) {
+  td,
+  th {
+    padding: 6px;
+  }
+  .calendar-controls button {
+    padding: 10px;
+  }
+}

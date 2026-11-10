@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "quality-lab": {
+      "command": "node",
+      "args": ["C:/absolute/path/playwright-ts-enterprise/scripts/launch.cjs", "mcp"]
+    },
+    "playwright-browser": {
+      "command": "node",
+      "args": ["C:/absolute/path/playwright-ts-enterprise/scripts/launch.cjs", "browser"]
+    }
+  }
+}

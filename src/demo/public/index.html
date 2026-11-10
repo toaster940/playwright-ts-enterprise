@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Quality Lab</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <a href="/" aria-label="Quality Lab home">QL / Quality Lab</a><span id="user">Guest</span>
+    </header>
+    <main>
+      <h1>Automation workspace</h1>
+      <p>A local playground for reliable UI, API and agent testing.</p>
+      <p><a href="/components.html">Open UI component lab</a></p>
+      <section aria-label="Sign in">
+        <h2>Sign in</h2>
+        <form id="login">
+          <label
+            >Email<input
+              name="email"
+              type="email"
+              value="qa@example.com"
+              required
+              autocomplete="username" /></label
+          ><label
+            >Password<input
+              name="password"
+              type="password"
+              value="Playwright123!"
+              required
+              autocomplete="current-password" /></label
+          ><button>Sign in</button>
+        </form>
+      </section>
+      <section aria-label="Tasks">
+        <h2>Tasks</h2>
+        <form id="task-form">
+          <label>Task title<input name="title" maxlength="120" required /></label
+          ><button>Add task</button>
+        </form>
+        <ul id="tasks" aria-label="Task list"></ul>
+        <p id="status" role="status" aria-live="polite">Ready</p>
+      </section>
+      <section aria-label="Browser lab">
+        <h2>Browser lab</h2>
+        <div class="controls">
+          <button id="catalog">Load catalog</button><button id="alert">Show dialog</button
+          ><button id="confirm">Confirm action</button><button id="timer">Start timer</button
+          ><button id="socket">Connect socket</button><button id="settings">Open settings</button
+          ><button id="cover">Show overlay</button><button id="clipboard">Copy greeting</button
+          ><button id="location">Locate me</button
+          ><a href="/help.html" target="_blank" rel="noopener">Open help</a
+          ><a href="/api/export" download>Export CSV</a>
+        </div>
+        <label>Upload text file<input id="upload" type="file" accept=".txt" /></label>
+        <p id="uploaded"></p>
+        <p id="catalog-result"></p>
+        <p id="timer-result"></p>
+        <p id="socket-result"></p>
+        <p id="location-result"></p>
+        <p id="clock" aria-label="Current date"></p>
+        <div class="drag-row">
+          <div draggable="true" id="source">Drag me</div>
+          <div id="target" role="region" aria-label="Drop zone">Drop here</div>
+        </div>
+        <iframe title="Help frame" src="/help.html"></iframe><quality-badge></quality-badge>
+      </section>
+      <section aria-label="Visual baseline" id="visual-card">
+        <h2>Quality gate</h2>
+        <p>UI + API + Accessibility</p>
+        <span class="pill">Ready to ship</span>
+      </section>
+      <dialog id="settings-dialog">
+        <h2>Settings</h2>
+        <label>Display name<input id="display-name" value="QA Engineer" /></label
+        ><button id="save-settings">Save</button>
+      </dialog>
+      <div id="overlay" hidden>
+        <p>Newsletter</p>
+        <button id="dismiss">Dismiss</button>
+      </div>
+    </main>
+    <footer>Quality Lab · deterministic local examples</footer>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>

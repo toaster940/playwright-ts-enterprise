@@ -1,0 +1,81 @@
+import { defineConfig, devices } from '@playwright/test';
+import { env } from './src/config/env.js';
+
+export default defineConfig({
+  testDir: './tests',
+  testIgnore: '**/integration/**',
+  fullyParallel: true,
+  forbidOnly: !!process.env.CI,
+  retries: process.env.CI ? 2 : 0,
+  workers: 2,
+  timeout: 30_000,
+  expect: { timeout: 5_000 },
+  outputDir: 'test-results',
+  snapshotPathTemplate:
+    '{testDir}/__screenshots__/{platform}/{projectName}/{testFilePath}/{arg}{ext}',
+  reporter: [
+    ['list'],
+    ['html', { open: 'never' }],
+    ['json', { outputFile: 'artifacts/results.json' }],
+    ['junit', { outputFile: 'artifacts/junit.xml' }],
+    ['./src/reporters/summary.ts'],
+    ...(process.env.CI ? [['blob', { outputDir: 'blob-report' }] as const] : []),
+  ],
+  use: {
+    baseURL: env.BASE_URL,
+    actionTimeout: 10_000,
+    navigationTimeout: 15_000,
+    trace: 'retain-on-failure',
+    screenshot: 'only-on-failure',
+    video: { mode: 'retain-on-failure', fps: 25 },
+    serviceWorkers: 'block',
+    locale: 'en-US',
+    timezoneId: 'UTC',
+    colorScheme: 'light',
+  },
+  webServer: {
+    command: `"${process.execPath}" node_modules/tsx/dist/cli.mjs src/demo/server.ts`,
+    url: `${env.BASE_URL}/api/health`,
+    reuseExistingServer: !process.env.CI,
+    timeout: 30_000,
+    gracefulShutdown: { signal: 'SIGTERM', timeout: 3_000 },
+  },
+  projects: [
+    { name: 'setup', testMatch: '**/auth.setup.ts' },
+    { name: 'api', testMatch: '**/api/**/*.spec.ts' },
+    {
+      name: 'chromium',
+      testMatch: ['**/ui/**/*.spec.ts', '**/seed.spec.ts'],
+      dependencies: ['setup'],
+      use: { ...devices['Desktop Chrome'], storageState: 'playwright/.auth/user.json' },
+    },
+    {
+      name: 'firefox',
+      default: false,
+      testMatch: ['**/ui/**/*.spec.ts', '**/seed.spec.ts'],
+      dependencies: ['setup'],
+      use: { ...devices['Desktop Firefox'], storageState: 'playwright/.auth/user.json' },
+    },
+    {
+      name: 'webkit',
+      default: false,
+      testMatch: ['**/ui/**/*.spec.ts', '**/seed.spec.ts'],
+      dependencies: ['setup'],
+      use: { ...devices['Desktop Safari'], storageState: 'playwright/.auth/user.json' },
+    },
+    {
+      name: 'mobile-chrome',
+      default: false,
+      testMatch: ['**/ui/**/*.spec.ts', '**/seed.spec.ts'],
+      dependencies: ['setup'],
+      use: { ...devices['Pixel 7'], storageState: 'playwright/.auth/user.json' },
+    },
+    {
+      name: 'mobile-safari',
+      default: false,
+      testMatch: ['**/ui/**/*.spec.ts', '**/seed.spec.ts'],
+      dependencies: ['setup'],
+      use: { ...devices['iPhone 13'], storageState: 'playwright/.auth/user.json' },
+    },
+  ],
+});

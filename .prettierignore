@@ -1,0 +1,11 @@
+node_modules
+playwright-report
+test-results
+blob-report
+artifacts
+playwright/.auth
+package-lock.json
+**/package-lock.json
+**/.cache
+all-blob-reports
+recordings/*.spec.ts
